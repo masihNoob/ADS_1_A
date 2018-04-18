@@ -1,48 +1,75 @@
 1.	PENDAHULUAN
 1.1	Tujuan Penulisan Dokumen
-Dokumen ini ditulis dalam rangka menjabarkan spesifikasi kebutuhan perangkat lunak yang akan digunakan oleh Dinas Kebudayaan dan Pariwisata. Penjabaran spesifikasi perangkat lunak meliputi deskripsi umum perangkat lunak dan deskripsi kebutuhan perangkat lunak. Perangkat lunak yang akan dibangun untuk Dinas Kebudayaan Dan Pariwisata bernama Jatim Exo Trip. Dalam rangka membangun perangkat lunak tersebut, tentunya spesifikasi kebutuhan untuk perangkat lunak tersebut dibutuhkan, khususnya oleh para pengembang dan pembangun perangkat lunak tersebut.
+	Dokumen ini ditulis dalam rangka menjabarkan spesifikasi kebutuhan perangkat lunak yang akan 
+	digunakan oleh Dinas Kebudayaan dan Pariwisata. Penjabaran spesifikasi perangkat lunak meliputi 
+	deskripsi umum perangkat lunak dan deskripsi kebutuhan perangkat lunak. Perangkat lunak yang akan 
+	dibangun untuk Dinas Kebudayaan Dan Pariwisata bernama Jatim Exo Trip. Dalam rangka membangun perangkat 
+	lunak tersebut, tentunya spesifikasi kebutuhan untuk perangkat lunak tersebut dibutuhkan, khususnya oleh 
+	para pengembang dan pembangun perangkat lunak tersebut.
 
 1.2	Lingkup masalah
-Jatim Exo Trip adalah sebuah aplikasi berbasis android yang memprediksi lama waktu berkunjung tempat pariwisata yang mana tempat asal dan tempat wisata yang dituju ditentukan oleh pengguna. Pengguna perangkat lunak dapat melakukan sign in, melihat destinasi wisata di berbagai kota, melakukan prediksi waktu berkunjung, memberi ulasan terhadap tempat wisata. Data-data yang dikelola admin dipertanggungjawabkan kepada Dinas Kebudayaan Dan Pariwisata di mana pihak dari Dinas Kebudayaan Dan Pariwisata akan mengunjungi Jatim Exo Trip untuk melakukan observasi serta meminta laporan pertanggungjawaban.
+	Jatim Exo Trip adalah sebuah aplikasi berbasis android yang memprediksi lama waktu berkunjung tempat pariwisata 
+	yang mana tempat asal dan tempat wisata yang dituju ditentukan oleh pengguna. Pengguna perangkat lunak dapat 
+	melakukan sign in, melihat destinasi wisata di berbagai kota, melakukan prediksi waktu berkunjung, memberi ulasan 
+	terhadap tempat wisata. Data-data yang dikelola admin dipertanggungjawabkan kepada Dinas Kebudayaan Dan Pariwisata 
+	di mana pihak dari Dinas Kebudayaan Dan Pariwisata akan mengunjungi Jatim Exo Trip untuk melakukan observasi serta 
+	meminta laporan pertanggungjawaban.
 
 1.3	Definisi, Istilah dan Singkatan
-berikut definisi, istilah serta singkatan yang digunakan dalam dokumen ini :
+	berikut definisi, istilah serta singkatan yang digunakan dalam dokumen ini :
 
 Tabel 1 Definisi, istilah dan singkatan
 Definisis, Istilah dan Singkatan	Penjelasan
-DFD	Data Flow Diagram yang menggambarkan alir data
-ERD	Entity Relationship Diagram yang menggambarkan entitas suatu objek beserta relasinya
-Interface	Antarmuka antara perangkat lunak dan pengguna
-Data Store	Tempat penyimpanan data
-API	Application Programming Interface
+DFD					Data Flow Diagram yang menggambarkan alir data
+ERD					Entity Relationship Diagram yang menggambarkan entitas suatu objek beserta relasinya
+Interface				Antarmuka antara perangkat lunak dan pengguna
+Data Store				Tempat penyimpanan data
+API					Application Programming Interface
 
 1.4	Aturan Penomoran
-Dalam dokumen ini, terdapat beberapa aturan penomoran yang dipakai. Untuk daftar penamaan perangkat lunak dijelaskan pada tabel dibawah ini :
+	Dalam dokumen ini, terdapat beberapa aturan penomoran yang dipakai. Untuk daftar penamaan perangkat lunak dijelaskan
+	pada tabel dibawah ini :
 
 Tabel 2 Aturan penomoran
-Nama-ID	Atuan penamaan	Deskripsi
-Kebutuhan fungsional	SRS-F-IN/PR/OUT-xxx	SRS adalag System Requirement Summary
-F adalah Fungsional
-IN menunjukkan operasi input
-PR menunjukkan operasi Proses
-OUT menunjukkan output
-Xxx adalah nomor SRS-Id
-Kebutuhan non fungsional	SRS-NF-IN/PR/OUT-xxx	SRS adalag System Requirement Summary
-NF adalah Non-Fungsional
-IN menunjukkan operasi input
-PR menunjukkan operasi Proses
-OUT menunjukkan output
-xxx adalah nomor SRS-Id
-Bubble	DFD-X-Y.Z	DFD adalah Data Flow Diagram
-X adalah nomor level diagram
-Y.Z adalah nomer pada buble diagram
+Nama-ID					Atuan penamaan			Deskripsi
+Kebutuhan fungsional			SRS-F-IN/PR/OUT-xxx		SRS adalag System Requirement Summary
+									F adalah Fungsional
+									IN menunjukkan operasi input
+									PR menunjukkan operasi Proses
+									OUT menunjukkan output
+									Xxx adalah nomor SRS-Id
+Kebutuhan non fungsional		SRS-NF-IN/PR/OUT-xxx		SRS adalag System Requirement Summary
+									NF adalah Non-Fungsional
+									IN menunjukkan operasi input
+									PR menunjukkan operasi Proses
+									OUT menunjukkan output
+									xxx adalah nomor SRS-Id
+Bubble					DFD-X-Y.Z			DFD adalah Data Flow Diagram
+									X adalah nomor level diagram
+									Y.Z adalah nomer pada buble diagram
 
 1.5	Referensi
-Dokumen ini memiliki beberapa referensi dalam pembuatannya, yaitu sebagai berikut :
-•	IEEE. 1998. IEEE Recommended Practice for Software Requirement Specification. New York : IEEE
-•	Pressman, Roger S. 2001. Software engineering: a practitioner’s approach 5th ed. New York : McGraw-Hill Companies, Inc.
+	Dokumen ini memiliki beberapa referensi dalam pembuatannya, yaitu sebagai berikut :
+	•	IEEE. 1998. IEEE Recommended Practice for Software Requirement Specification. New York : IEEE
+	•	Pressman, Roger S. 2001. Software engineering: a practitioner’s approach 5th ed. New York : McGraw-HillCompanies, Inc.
+
 1.6	Deskripsi umum Dokumen (ikhtisar)
-Dokumen Spesifikasi Kebutuhan Perangkat Lunak (SKPL) ini berisikan beberapa bagian besar, antara lain pendahuluan, deskripsinumum peragkat lunak, dan deskripsi kebutuhan.
-	Bagian pendahuluan berisi tujuan penulisan dokumen yang menjelaskan alas an dokumen ini dibuat, lingkup masalah yang berisi ringkasan deskripsi dan aplikasi yang akan dibuat, definisi, istilah dan singkatan yang digunakan dalam dokumen, aturan penomoran tang digunakan dalam dokumen ini, referensi yang dirujuk oleh dokumen dan ikhtisar dokumen ini.
-	Bagian deskripsi umum perangkat lunak berisi deskripsi umum dsri sistem yang dibuat. Karakteristik pengguna sistem, batasan yang dipakai dalam perangkat lunak itu sendiri, dan lingkungan operasi yang diperuntukan bagi perangkat lunak yang dibuat.
-	Bagian deskripsi kebutuhan di dalam dokumen ini meliputi kebutuhan antarmuka eksternal, kebutuhan fungsional, kebutuhan non fungsioanl, kebutuhan data, batasan perancangan perangkat lunak, keruntunan, dan ringkasan dari kebutuhan perangkat lunak, baik itu kebutuhan fungsional maupun kebutuhan non fungsional. Kebutuhan antarmuka eksternal meliputi antarmuka pemakai, antarmuka perangkat keras, antarmuka perangkat lunak, dan antarmuka komuniaksi. Kebutuhan fungsional dan kebutuhan non fungsional perangkat lunak yang dibuat disertakan dalam dokumennini. Kebutuhan fungsional perangkat lunak digambarkan dalam bentuk Data Flow Diagram (DFD), dimana DFD meliputi diagram konteks, DFD level 1, dan DFD level 2. Data store dari DFD yang dibuat pun dijelaskan di dalam dokumen ini. selain DFD, kebutuhan fungsional perangkat lunak digambarkan dalam spesifikasi proses. Kebutuhan data dari perangkat lunak digambarkan dalam Entity Relatonship Diagram (E-R Diagram). Batasan perancangan dari perangkat lunak yang akan dibuat tentunya harus dijelaskan dalam dokumen ini agar pengembang perangkat lunak lebih mudah dalam melakukan pekerjaannya. Keruntutan dari perangkat lunak yang dibuat digambarkan dengan cara mapping kebutuhan fungsional dengan proses pada DFD dan mapping data store DFD dengan Entity-Relationship Diagram.
+	Dokumen Spesifikasi Kebutuhan Perangkat Lunak (SKPL) ini berisikan beberapa bagian besar, antara lain pendahuluan, deskripsinumum 
+	peragkat lunak, dan deskripsi kebutuhan. Bagian pendahuluan berisi tujuan penulisan dokumen yang menjelaskan alas an dokumen ini dibuat, 
+	lingkup masalah yang berisi ringkasan deskripsi dan aplikasi yang akan dibuat, definisi, istilah dan singkatan yang digunakan dalam dokumen, 
+	aturan penomoran tang digunakan dalam dokumen ini, referensi yang dirujuk oleh dokumen dan ikhtisar dokumen ini.Bagian deskripsi umum perangkat 
+	lunak berisi deskripsi umum dsri sistem yang dibuat. Karakteristik pengguna sistem, batasan yang dipakai dalam perangkat lunak itu sendiri, 
+	dan lingkungan operasi yang diperuntukan bagi perangkat lunak yang dibuat. Bagian deskripsi kebutuhan di dalam dokumen ini meliputi kebutuhan 
+	antarmuka eksternal, kebutuhan fungsional, kebutuhan non fungsioanl, kebutuhan data, batasan perancangan perangkat lunak, keruntunan, dan ringkasan
+	dari kebutuhan perangkat lunak, baik itu kebutuhan fungsional maupun kebutuhan non fungsional. Kebutuhan antarmuka eksternal meliputi antarmuka pemakai, 
+	antarmuka perangkat keras, antarmuka perangkat lunak, dan antarmuka komuniaksi. Kebutuhan fungsional dan kebutuhan non fungsional perangkat lunak yang dibuat 
+	disertakan dalam dokumennini. Kebutuhan fungsional perangkat lunak digambarkan dalam bentuk Data Flow Diagram (DFD), dimana DFD meliputi diagram konteks, DFD level 1,
+	dan DFD level 2. Data store dari DFD yang dibuat pun dijelaskan di dalam dokumen ini. selain DFD, kebutuhan fungsional perangkat lunak digambarkan dalam spesifikasi proses. 
+	Kebutuhan data dari perangkat lunak digambarkan dalam Entity Relatonship Diagram (E-R Diagram). Batasan perancangan dari perangkat lunak yang akan dibuat tentunya harus 
+	dijelaskan dalam dokumen ini agar pengembang perangkat lunak lebih mudah dalam melakukan pekerjaannya. Keruntutan dari perangkat lunak yang dibuat digambarkan dengan cara 
+	mapping kebutuhan fungsional dengan proses pada DFD dan mapping data store DFD dengan Entity-Relationship Diagram.
+	
+2. 	Deskripsi Umum Perangkat Lunak
+2.1 	Deskripsi Umum Sistem
+	
+	
