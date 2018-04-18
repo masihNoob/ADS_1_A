@@ -71,7 +71,7 @@ Bubble					DFD-X-Y.Z			DFD adalah Data Flow Diagram
 	
 2. 	Deskripsi Umum Perangkat Lunak
 2.1 	Deskripsi Umum Sistem
-		Jatim EXO Trip merupakan suatu aplikasi berbasis mobile yang merupakan suatu aplikasi yang bisa memprediksi waktu kunjung suatu wisata. pengguna aplikasi
+		Jatim EXO Trip merupakan mobile application berbasis android yang dapat memprediksi waktu kunjung suatu wisata. pengguna aplikasi
 	ini dapat melakukan sign in. pengguna yang telah mendaftar dapat melakukan login untuk memiliki akses seperti pemberian rating dan melakukan posting tempat 
 	wisata yang telah dikunjunginya. Pada aplikasi ini pengguna dapat melihat berbagai macam destinasi wisata di Jawa Timur pada masing-masing daerah yang ada di Jawa Timur.
 	pengguna dapat memberi apresiasi terhadap wisata maupun aplikasi dengan cara merekomendasikan tempat wisata yang ingi direkomendasikan dan memberi rating kepada aplikasi untuk memberi
@@ -84,7 +84,7 @@ Bubble					DFD-X-Y.Z			DFD adalah Data Flow Diagram
 2.2 	Karakteristik Pengguna
 	Tabel 3 Karakteristik Pengguna
 	Kategori Pengguna		Tugas						Hak Akses ke aplikasi
-	User/Guest			melihat dan menjalankan aplikasi		melakukan pendaftara, memberi rating, merekomendasi wisata, mencari prediksi waktu
+	User/Guest			melihat dan menjalankan aplikasi		melakukan pendaftaran, memberi rating, merekomendasi wisata, mencari prediksi waktu
 	Admin				memperbarui daftar wisata, memperbarui rating		sign in sebagai admin
 	
 2.3 	Batasan
