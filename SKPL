@@ -71,5 +71,95 @@ Bubble					DFD-X-Y.Z			DFD adalah Data Flow Diagram
 	
 2. 	Deskripsi Umum Perangkat Lunak
 2.1 	Deskripsi Umum Sistem
+		Jatim EXO Trip merupakan suatu aplikasi berbasis mobile yang merupakan suatu aplikasi yang bisa memprediksi waktu kunjung suatu wisata. pengguna aplikasi
+	ini dapat melakukan sign in. pengguna yang telah mendaftar dapat melakukan login untuk memiliki akses seperti pemberian rating dan melakukan posting tempat 
+	wisata yang telah dikunjunginya. Pada aplikasi ini pengguna dapat melihat berbagai macam destinasi wisata di Jawa Timur pada masing-masing daerah yang ada di Jawa Timur.
+	pengguna dapat memberi apresiasi terhadap wisata maupun aplikasi dengan cara merekomendasikan tempat wisata yang ingi direkomendasikan dan memberi rating kepada aplikasi untuk memberi
+	apresiasi kepuasan penggunaan aplikasi ini. aplikasi ini tidak menyediakan layanan untuk pembelian tiket tempat wisata, transportasi maupun penginapan. Untuk pengguna yang akan
+	melakukan prediksi waktu kunjungan pada beberapa wisata yang akann dituju, pengguna hanya harus memasukkan kota asal dan destinasi wisata yang akan ditujunya, kemudian aplikasi
+	akan menampilkan prediksi waktu kunjungan tersebut. pengguna juga dapat mengetahui lama kunjung pada tempat wisata, tujuannya yaitu apabila pengguna ingin mengunjungi lebih dari satu
+	tempat wisata, pengguna tidak akan kehabisan waktu hanya untuk menikmati pada 1 wisata saja. sistem ini dikelola oleh seorang admin yang bertugas untuk memperbarui foto-foto dari tempat wisata, 
+	terutama yang direkomendasikan oleh pengguna
+	
+2.2 	Karakteristik Pengguna
+	Tabel 3 Karakteristik Pengguna
+	Kategori Pengguna		Tugas						Hak Akses ke aplikasi
+	User/Guest			melihat dan menjalankan aplikasi		melakukan pendaftara, memberi rating, merekomendasi wisata, mencari prediksi waktu
+	Admin				memperbarui daftar wisata, memperbarui rating		sign in sebagai admin
+	
+2.3 	Batasan
+	Dalam pembuatan aplikasi ini, terdapat beberapa batasan yang digunakan. Batasan-batasan tersebut antara lain :
+	1. pemberian rating dan rekomendasi wisata hanya bisa dilakukan oleh pengguna yang telah melakukan sign in
+	2. aplikasi hanya menyediakan beberapa destinasi wisata tanpa layanan pembelian tiket apapun
+	3. aplikasi harus berfungsi pada platform android
+	
+2.4 	Lingkungan Operasi
+	Aplikasi ini akan berfungsi dengan spesifikasi :
+	Server :
+	Komputer atau Laptop dengan spesifikasi hardware minimal seperti berikut :
+	- Processor intel Core i3
+	- Motherboard support internet connection
+	- 2 GB RAM
+	- 500 GB Hard Disk Drive utama
+	- 500 GB Hard Disk backup
+	- Mouse
+	Komputer atau Laptop yang minimal telah terinstall Software sebagai berikut :
+	- Apache HTTP Server
+	-
+	-
+	-
+	
+	Client :
+	Smartphone dengan bspesifikasi minimal sebagai berikut :
+	- OS Android Kitkat
+	- CPU Quad-core 2.5 GHz
+	- Memori 16 GB
+	- RAM 1 GB
+	
+3. 	Deskripsi Kebutuhan
+3.1 	Kebutuhan Antarmuka Eksternal
+	Aplikasi Jatim EXO Trip membutuhkan fasilitas-fasilitas antarmuka eksternal sebagai berikut :
+3.1.1 	Antarmuka pemakai
+	user interface yang digunakan untuk mengoperasikan aplikasi Jatim EXO Trip antara lain :
+	- tampilan home aplikasi
+	- tampilan pemberian rating
+	- tampilan prediksi waktu kunjung
+	- tampilan rekomendasi tempat wisata
+3.2 	Kebutuhan Fungsional
+	Tabel 4 Kebutuhan fungsional
+	ID		Kebutuhan				Penjelasan
+	SRS-F-OUT-001	Aplikasi dapat menampilkan		pengguna dapat memilih sign in menggunakan facebook atau akun google
+			form sign in
+	SRS-F-OUT-002	Aplikasi menampilkan informasi		tempat wisata yang ditampilkan dalam 2 tipe yaitu keseluruhan wisata pada
+			tempat wisata				pada Jawa Timur atau Di salah satu wilayah yang dipilih
+	SRS-F-OUT-003	Aplikasi memberi saran perjalanan	memberikan saran rute yang terbaik untuk mencapai tempat wisata tujuan
+			yang akan dilakukan pengguna
+	SRS-F-OUT-004	Aplikasi memberi informasi yang 	memberi rekomendasi jalan yang terbaik dari tempat keberadaan saat itu
+			direkomendasi berdasarkan lokasi
+			saat itu
+3.2.1	Diagram Konteks
+3.2.2 	DFD Level 1
+3.2.2.1	DFD Level 2
+3.2.2.2	DFD Level 2
+
+3.2.3 	Spesifikasi Proses (P-SPEC)
+3.2.4 	Data Store
+3.3	Kebutuhan data
+3.3.1	E-R Diagram
+
+3.4 	Kebutuhan Non Fungsional
+	ID			Parameter			Kebutuhan
+	SRS-NF-OUT-005		Ergonomy			Tampilan antarmuka aplikasi Jatim EXO Trip mudah dipahami user
+	SRS-NF-PR-006		Portability			Aplikasi dapat dipakai pada platform Android
+	SRS-NF-OUT-007		Availability			Aplikasi dapat dalam bahasa nggrris atau Indonesia
+
+3.5 	Batasan Perancangan
 	
 	
+
+
+
+
+	
+	
+
