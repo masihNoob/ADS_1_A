@@ -1,0 +1,14 @@
+Use Case  : JATIM EXO-TRIP ( Jawa Timur Explore Online-Trip )
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+User		|	- Melihat list destinasi wisata yang tersedia
+		|	- Memasukkan jumlah hari, kota asal, dan tempat tujuan wisata yang diinginkan
+		|	- Mengetahui rute wisata yang dituju
+		|	- Registrasi untuk memberi rating
+		|	- Memberi rating pada aplikasi dan wisata	
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Administrator	|	- Login sebagai admin
+		|	- Melakukan update tempat wisata
+		|	- Memberi rating tempat wisata
+		|	- Menyimpan rating tempat wisata dan aplikasi
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
