@@ -1,0 +1,22 @@
+System Request : JATIM EXO-TRIP ( Jawa Timur Explore Online-Trip )
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+No	| Elemen			| Uraian
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1	| Project Sponsor		| - Dinas Kebudayaan dan Pariwisata
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2	| Bussiness Needs		| - Mengenalkan pariwisata Jawa Timur
+	|				| - Mempermudah visitor/wisatawan untuk mengunjungi tempat wisata Jawa Timur
+	|				| - Meminimalisir terjadinya ketersesatan pada wisatawan
+	|				| - Merekomendasikan prediksi waktu kunjungan pada destinasi wisata yang akan dituju
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3	| Bussiness Requirements	| - Informasi mengenai destinasi wisata (gunung, laut, wisata sejarah, dll.)
+	|				| - Informasi mengenai destinasi wisata paling banyak dikunjungi
+	|				| - Informasi rute jalan yang akan ditempuh untuk mencapai tempat destinasi
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4	| Bussiness Value		| - Dapat memperkiraan pengeluaran biaya
+	|				| - Wisata-wisata yang tersembunyi dapat lebih ter-eksplore
+	|				| - Meningkatkan pendapatan Dinas Kebudayaan Dan Pariwisata
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5	| Special Issues		| - Sistem dibangun berbasis mobile
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
