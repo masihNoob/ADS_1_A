@@ -19,13 +19,15 @@
 	berikut definisi, istilah serta singkatan yang digunakan dalam dokumen ini :
 
 Tabel 1 Definisi, istilah dan singkatan
-Definisis, Istilah dan Singkatan	Penjelasan
-DFD					Data Flow Diagram yang menggambarkan alir data
-ERD					Entity Relationship Diagram yang menggambarkan entitas suatu objek beserta relasinya
-Interface				Antarmuka antara perangkat lunak dan pengguna
-Data Store				Tempat penyimpanan data
-API					Application Programming Interface
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Definisis, Istilah dan Singkatan		|	Penjelasan
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DFD						|	Data Flow Diagram yang menggambarkan alir data
+ERD						|	Entity Relationship Diagram yang menggambarkan entitas suatu objek beserta relasinya
+Interface					|	Antarmuka antara perangkat lunak dan pengguna
+Data Store					|	Tempat penyimpanan data
+API						|	Application Programming Interface
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1.4	Aturan Penomoran
 	Dalam dokumen ini, terdapat beberapa aturan penomoran yang dipakai. Untuk daftar penamaan perangkat lunak dijelaskan
 	pada tabel dibawah ini :
