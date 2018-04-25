@@ -163,7 +163,45 @@
 	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 3.5 	Batasan Perancangan
+	batasan perancangan yang digunakan dalam pengembangan aplikasi Jatim Exo Trip antara lain
+	- Tampilan apliaksi dibuat dengan menggunakan photoshop
+	- Pembangunan aplikasi android menggunakan Android studio
+
+3.6	Keruntutan (traceability)
+	suatu aplikasi yang baik memiliki kebutuhan fungsional yang dapat dirunut model analisisnya. Berikut ini adalah tabel
+	yang berisi traceability dari hasil analisis kebutuhan aplikasi yang dibangun.
 	
+3.6.1	Kebutuhan Fungsional vs Proses
+
+3.6.2	Data Store vs E-R
+
+3.7	Ringkasan Kebutuhan
+	perangkat lunak yang dibangun memiliki dua jenis kenutuhan yaitu kebutuhan fungsional dan kebutuhan non fungsional. 
+	Kebutuhan ini mencerminkan segala hal yang harus dipenuhi, dan nantinta akan menjadi arahan untuk tahapan testing, 
+	karena pada pada dasarnya, semua kebutuhan harus dapat ditest. Berikut ini ringkasan semua kebutuhan aplikasi Jatim
+	Exo Trip.
+3.7.1	Kebutuhan Fungsional
+	Tabel .. Kebutuhan fungsional
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ID				| Deskripsi
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SRS-F-OUT-001			| pengguna dapat memilih sign in menggunakan facebook atau akun google
+	SRS-F-OUT-002			| tempat wisata yang ditampilkan dalam 2 tipe yaitu keseluruhan wisata pada pada Jawa Timur atau Di salah satu wilayah yang dipilih
+	SRS-F-OUT-003			| memberikan saran rute yang terbaik untuk mencapai tempat wisata tujuan
+	SRS-F-OUT-004			| memberi rekomendasi jalan yang terbaik dari tempat keberadaan saat itu
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+3.7.2	Kebutuhan Non Fungsional
+	Kebutuhan Non Fungsional
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ID				| Kebutuhan
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SRS-NF-OUT-005			| Tampilan antarmuka aplikasi Jatim EXO Trip mudah dipahami user
+	SRS-NF-PR-006			| Aplikasi dapat dipakai pada platform Android
+	SRS-NF-OUT-007			| Aplikasi dapat dalam bahasa nggrris atau Indonesia
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+
+
 	
 
 
