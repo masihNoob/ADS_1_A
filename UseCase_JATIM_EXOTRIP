@@ -12,3 +12,16 @@ Administrator	|	- Login sebagai admin
 		|	- Memberi rating tempat wisata
 		|	- Menyimpan rating tempat wisata dan aplikasi
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use Case Description
+Use Case name: Memberi rating wisata dan aplikasi
+Actor			:	visitor
+Description		:	Visitor yang menggunakan aplikasi akan memberi ulasan terhadap aplikasi dan tempat wisata
+Trigger			:	Visitor ingin memberi ulasan pada aplikasi dan tempat wisata
+Pre-condition		:	-	Halaman awal aplikasi
+				-	Pilihan menu
+				-	Form registrasi
+Normal Course		:	-	Mengisi form registrasi
+				-	Mengisi form pemberian ulasan
+Exception		:	-	Terdapat peringatan jika salah satu form registrasi yang tidak diisi
+Post-Condition		:	Menampilkan kotak dialog bertuliskan”TERIMAKASIH ATAS ULASAN ANDA”
+
