@@ -1,0 +1,14 @@
+                                                LAPORAN KEBUTUHAN FUNGSIONAL DAN NONFUNGSIONAL
+                                                APLIKASI JATIM EXO-TRIP
+                                                KELOMPOK 1
+Kebutuhan Fungsional :
+1. User Login/Register menggunakan Akun Google atau Facebook ( Account Binding )
+2. User mengisi data pelengkap akun.
+3. Aplikasi menampilkan informasi tempat wisata di sekitar lokasi user saat itu, atau lokasi tujuan dari user.
+4. Aplikasi menampilkan perjalanan yang paling di rekomendasikan berdasar lokasi user saat itu.
+5. Aplikasi memberikan saran perjalanan yang akan di lakukan oleh user.
+
+Kebutuhan Non-Fungsional :
+1. Sistem menggunakan 2 bahasa pilihan, yaitu Indonesia dan Inggris.
+2. Sistem menggunakan API dari Google Maps.
+3. Sistem diterapkan pada platform Android, dan (kedepannya) Website.
