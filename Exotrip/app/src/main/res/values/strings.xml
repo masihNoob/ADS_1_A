@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Exotrip</string>
+    <string name="title_activity_user_account">userAccount</string>
+</resources>
