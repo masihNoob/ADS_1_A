@@ -8,19 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.volley.toolbox.ImageLoader;
+
+import java.util.List;
+
 public class ImageViewAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer [] images = {R.drawable.gmb1, R.drawable.gmb2, R.drawable.gmb3};
+    private List<SliderUtils> sliderImg;
+    private ImageLoader imageLoader;
 
-    public ImageViewAdapter(Context context){
+    //mengambil data dari internet
+    // private Integer [] images = {R.drawable.gmb1, R.drawable.gmb2, R.drawable.gmb3};
+
+    public ImageViewAdapter(List<SliderUtils> sliderImg,Context context){
+        this.sliderImg = sliderImg;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return sliderImg.size();
     }
 
     @Override
@@ -32,8 +41,13 @@ public class ImageViewAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.image_loader, null);
+
+        SliderUtils sliderUtils = sliderImg.get(position);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageViewer);
-        imageView.setImageResource(images[position]);
+        imageLoader = CustomVolleyRequest.getInstance(context).getImageLoader();
+        imageLoader.get(sliderUtils.getSliderImageUrl(), imageLoader.getImageListener(imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
+
+        //imageView.setImageResource(images[position]);
 
         ViewPager viewPager = (ViewPager) container;
         viewPager.addView(view, 0);
