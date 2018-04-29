@@ -37,7 +37,7 @@ public class ImageViewAdapter extends PagerAdapter {
 
         ViewPager viewPager = (ViewPager) container;
         viewPager.addView(view, 0);
-
+        
         return view;
     }
 
