@@ -25,7 +25,7 @@ public class FragmentMain extends Fragment {
         imagePager.setAdapter(new ImageViewAdapter(this.getActivity()));
 
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MyTimer(), 2000, 400);
+        timer.scheduleAtFixedRate(new MyTimer(), 2000, 4000);
 
         return view;
     }
@@ -34,8 +34,15 @@ public class FragmentMain extends Fragment {
 
         @Override
         public void run() {
-            currentIndext = (currentIndext + 1) % imgAdp.getCount();
-            imagePager.setCurrentItem(currentIndext, true);
+            imgAdp= new ImageViewAdapter(getActivity());
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    currentIndext = (currentIndext + 1) % imgAdp.getCount();
+                    imagePager.setCurrentItem(currentIndext, true);
+                }
+            });
+
         }
     }
 
