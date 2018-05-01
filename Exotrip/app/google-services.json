@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1010700816450",
+    "firebase_url": "https://exotrip-c3f36.firebaseio.com",
+    "project_id": "exotrip-c3f36",
+    "storage_bucket": "exotrip-c3f36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010700816450:android:5310332755e7536d",
+        "android_client_info": {
+          "package_name": "com.malang.exo.exotrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010700816450-0nhpri9bgnir1osvimdp55p4eb55qpap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.malang.exo.exotrip",
+            "certificate_hash": "c7117de4f67a24a1d3028a582c18adaecd9afd94"
+          }
+        },
+        {
+          "client_id": "1010700816450-imn5gsu6q5b5p01remciughsimktnkk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuZcqZ90-XS1inORY261Ha1a_v7wmbvkQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1010700816450-imn5gsu6q5b5p01remciughsimktnkk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

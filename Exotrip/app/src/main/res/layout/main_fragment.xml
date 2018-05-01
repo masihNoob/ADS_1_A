@@ -17,11 +17,18 @@
 
 
     <TextView
+        android:id="@+id/idText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="beranda"
         android:textAlignment="center"
         android:textSize="50dp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnpermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="permisi" />
 
 </LinearLayout>
