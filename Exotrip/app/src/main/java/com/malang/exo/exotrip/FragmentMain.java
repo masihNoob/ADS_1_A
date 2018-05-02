@@ -26,6 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,16 +39,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class FragmentMain extends Fragment {
-    int INTERNET_PERMISSION_CODE = 1;
+
     View view;
     ViewPager imagePager;
-    TextView idText;
     int currentIndext = 0;
     ImageViewAdapter imgAdp;
 
     RequestQueue requestQueue;
     List<SliderUtils> sliderImg;
-    String requesUrl = "https://exotrip-c3f36.firebaseio.com";
+    String requesUrl = "https://doc-10-9s-docs.googleusercontent.com/docs/securesc/1b4iif2l629al3s7ifo49s3d4634qp54/6e01guqeboe1mh6m1ici37ivu9vjh11l/1525284000000/11246867046291535215/11246867046291535215/1-hzorInf-v7d6VeeLjE9gaKAEgNv8VLx?e=download&gd=true&access_token=ya29.GlyvBTQk0N-RNYiaosSPuDhnNzjf9vvDpExTXTpplcojhJt9sy1C7Cm_niCsnRWQLVT1HI60oNzs65zEEzBPOmJCAfcBuKFuUetZHrAvMQqpoTyIQpXWHlB86sraBA";
 
     @Nullable
     @Override
@@ -55,18 +56,12 @@ public class FragmentMain extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getActivity());
         sliderImg = new ArrayList<>();
-
         imagePager = (ViewPager) view.findViewById(R.id.imageViewPager);
 
         SendRequest();
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new MyTimer(), 2000, 4000);
         return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        idText = view.findViewById(R.id.idText);
     }
 
     public class MyTimer extends TimerTask
@@ -99,7 +94,6 @@ public class FragmentMain extends Fragment {
                            {
                                SliderUtils sliderUtils = new SliderUtils();
                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                               //idText.setText(jsonObject.getString("name"));
                                sliderUtils.setSliderImageUrl(jsonObject.getString("image"));
                                sliderImg.add(sliderUtils);
                            }
