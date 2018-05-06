@@ -3,8 +3,11 @@ package com.malang.exo.exotrip;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,8 +29,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,23 +51,65 @@ public class FragmentMain extends Fragment {
     int currentIndext = 0;
     ImageViewAdapter imgAdp;
 
-    RequestQueue requestQueue;
+    //RequestQueue requestQueue;
+    //String requesUrl = "https://sikma.000webhostapp.com/androids.json";
     List<SliderUtils> sliderImg;
-    String requesUrl = "https://doc-10-9s-docs.googleusercontent.com/docs/securesc/1b4iif2l629al3s7ifo49s3d4634qp54/6e01guqeboe1mh6m1ici37ivu9vjh11l/1525284000000/11246867046291535215/11246867046291535215/1-hzorInf-v7d6VeeLjE9gaKAEgNv8VLx?e=download&gd=true&access_token=ya29.GlyvBTQk0N-RNYiaosSPuDhnNzjf9vvDpExTXTpplcojhJt9sy1C7Cm_niCsnRWQLVT1HI60oNzs65zEEzBPOmJCAfcBuKFuUetZHrAvMQqpoTyIQpXWHlB86sraBA";
+
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.main_fragment, container, false);
 
-        requestQueue = Volley.newRequestQueue(getActivity());
+        //requestQueue = Volley.newRequestQueue(getActivity());
+
         sliderImg = new ArrayList<>();
         imagePager = (ViewPager) view.findViewById(R.id.imageViewPager);
+        if(checkInternet()){
+            initFirebase();
+            addFirebaseEventListener();
 
-        SendRequest();
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MyTimer(), 2000, 4000);
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new MyTimer(), 2000, 4000);
+        }else
+        {
+            Toast.makeText(getActivity(), "please check internet", Toast.LENGTH_LONG).show();
+        }
         return view;
+    }
+
+    private boolean checkInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    private void addFirebaseEventListener() {
+        databaseReference.child("versions").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot postdataSnapshot:dataSnapshot.getChildren())
+                {
+                    SliderUtils sliderUtils = new SliderUtils();
+                    User user = postdataSnapshot.getValue(User.class);
+                    sliderUtils.setSliderImageUrl(user.getImage());
+                    sliderImg.add(sliderUtils);
+                }
+                imagePager.setAdapter(new ImageViewAdapter(sliderImg, getActivity()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void initFirebase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 
     public class MyTimer extends TimerTask
@@ -80,7 +128,8 @@ public class FragmentMain extends Fragment {
 
         }
     }
-
+/*
+volley (not used anymore)
     public void SendRequest()
     {
        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, requesUrl,
@@ -113,7 +162,7 @@ public class FragmentMain extends Fragment {
        requestQueue.add(jsonObjectRequest);
 
     }
-
+*/
     public FragmentMain() {
     }
 }
