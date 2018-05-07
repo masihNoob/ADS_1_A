@@ -114,18 +114,19 @@ public class FragmentMain extends Fragment {
 
     public class MyTimer extends TimerTask
     {
-
         @Override
         public void run() {
             imgAdp= new ImageViewAdapter(sliderImg, getActivity());
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    currentIndext = (currentIndext + 1) % imgAdp.getCount();
-                    imagePager.setCurrentItem(currentIndext, true);
+                    if(imgAdp.getCount() > 0) {
+                        currentIndext = (currentIndext + 1) % imgAdp.getCount();
+                        imagePager.setCurrentItem(currentIndext, true);
+                    }else
+                        Toast.makeText(getActivity(), "please wait", Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
     }
 /*

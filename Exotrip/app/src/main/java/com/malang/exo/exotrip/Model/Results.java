@@ -25,6 +25,7 @@ public class Results {
 
     private Geometry geometry;
 
+
     public Photos[] getPhotos ()
     {
         return photos;
@@ -144,6 +145,7 @@ public class Results {
     {
         this.geometry = geometry;
     }
+
 
     @Override
     public String toString()

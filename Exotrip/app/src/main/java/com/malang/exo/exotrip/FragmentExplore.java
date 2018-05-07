@@ -1,6 +1,7 @@
 package com.malang.exo.exotrip;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
 import android.location.Location;
@@ -59,6 +60,7 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
     private LocationRequest locationRequest;
 
     IGoogleAPIService iGoogleAPIService;
+    MyPlaces currentPalce;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.explore_fragment, container, false);
@@ -90,6 +92,9 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
         iGoogleAPIService.getNearbyPlaces(url).enqueue(new Callback<MyPlaces>() {
             @Override
             public void onResponse(Call<MyPlaces> call, Response<MyPlaces> response) {
+
+                currentPalce = response.body();
+
                 if(response.isSuccessful())
                 {
                     for (int i =0; i < response.body().getResults().length;i++)
@@ -104,8 +109,11 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
                         LatLng latLng = new LatLng(lat, lng);
                         markerOptions.position(latLng);
                         markerOptions.title(placeName);
-
                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+
+                        //store market by index
+                        markerOptions.snippet(String.valueOf(i));
+
                         mMap.addMarker(markerOptions);
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
@@ -186,8 +194,17 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
         }else {
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
-
         }
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                //when user select the marker, data will be stored into static variable
+                Common.currentResult = currentPalce.getResults()[Integer.parseInt(marker.getSnippet())];
+                //open new activity
+                startActivity(new Intent(getActivity(), ViewPlace.class));
+                return true;
+            }
+        });
     }
 
     private synchronized void buildGoogleApiClient() {
@@ -229,6 +246,7 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("your location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
         marker = mMap.addMarker(markerOptions);
+        marker.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
