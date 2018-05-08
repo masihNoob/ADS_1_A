@@ -4,10 +4,11 @@ import android.content.Context;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.multidex.MultiDex;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.malang.exo.exotrip.Adapter.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

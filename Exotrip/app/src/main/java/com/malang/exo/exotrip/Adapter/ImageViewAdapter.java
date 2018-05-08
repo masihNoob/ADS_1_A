@@ -1,4 +1,4 @@
-package com.malang.exo.exotrip;
+package com.malang.exo.exotrip.Adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.malang.exo.exotrip.CustomVolleyRequest;
+import com.malang.exo.exotrip.SliderUtils;
 
 import java.util.List;
 

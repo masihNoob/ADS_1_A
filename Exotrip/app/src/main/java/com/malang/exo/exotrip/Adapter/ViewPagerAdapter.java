@@ -1,4 +1,4 @@
-package com.malang.exo.exotrip;
+package com.malang.exo.exotrip.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
