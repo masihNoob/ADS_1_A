@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,9 +17,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -37,6 +44,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.malang.exo.exotrip.Model.MyPlaces;
 import com.malang.exo.exotrip.Model.Results;
 import com.malang.exo.exotrip.Remote.IGoogleAPIService;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,11 +70,16 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
     private Marker marker;
     private LocationRequest locationRequest;
 
+    private EditText editText;
+    private ImageView imageView;
+
     IGoogleAPIService iGoogleAPIService;
     MyPlaces currentPalce;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.explore_fragment, container, false);
+        editText = (EditText) view.findViewById(R.id.searchBar);
+        imageView = (ImageView) view.findViewById(R.id.ic_magnify);
         return view;
     }
 
@@ -85,6 +101,43 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
         iGoogleAPIService = Common.getGoogleAPIService();
         //request permission
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) checkLocationPermission();
+    }
+
+    private void initial(){
+        Log.d("initial: ", "inisialisasi");
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(editText.getText().toString().trim().isEmpty())
+                {
+                    Toast.makeText(getActivity(), "tolong maukan alamat atau kota", Toast.LENGTH_SHORT).show();
+                }else{
+                    mapSearch();
+                }
+            }
+        });
+    }
+
+    private void mapSearch() {
+        Log.d("mapsearch", "mapSearch: ");
+        String searchText = editText.getText().toString();
+        Geocoder geocoder = new Geocoder(getActivity());
+        List<Address> list = new ArrayList<>();
+        try {
+            list = geocoder.getFromLocationName(searchText, 1);
+        }catch (IOException e)
+        {
+            Log.e("mapSearch: ", e.getMessage());
+        }
+        if(list.size() >0)
+        {
+            Address address = list.get(0);
+            Log.d("mapSearch: ", address.toString());
+
+            latitude = address.getLatitude();
+            longitude = address.getLongitude();
+            nearbyPlace("tourism");
+        }
     }
 
     private void nearbyPlace(final String placeType) {
@@ -190,6 +243,7 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
             {
                 buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
+                initial();
             }
         }else {
             buildGoogleApiClient();
@@ -251,6 +305,5 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
         if(googleApiClient != null) LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
-        nearbyPlace("tourism");
     }
 }
