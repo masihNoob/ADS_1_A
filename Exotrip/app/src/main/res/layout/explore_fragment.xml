@@ -10,23 +10,46 @@
         android:id="@+id/mapFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="320dp"
         tools:context=".FragmentExplore"/>
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:gravity="center"
         android:id="@+id/MappBarId">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/search_border"
+            android:id="@+id/relLayout1">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/ic_magnify"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_search_black_24dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/ic_magnify"
+                android:layout_centerVertical="true"
+                android:textSize="15dp"
+                android:textColor="#000"
+                android:id="@+id/searchBar"
+                android:background="@null"
+                android:hint="masukan alamat atau kota"
+                android:imeOptions="actionSearch" />
+        </RelativeLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/MapimageViewPager"
             android:layout_width="match_parent"
-            android:layout_height="230dp"/>
+            android:layout_height="180dp"/>
     </android.support.design.widget.AppBarLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="exlore"
-        android:textSize="50dp"
-        android:textStyle="bold"/>
 
 </LinearLayout>

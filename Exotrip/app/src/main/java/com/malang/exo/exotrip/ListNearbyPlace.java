@@ -44,7 +44,7 @@ public class ListNearbyPlace extends Fragment {
     }
 
     private void setData() {
-        
+
         NearbyListAdapter adapter = new NearbyListAdapter(items);
         list.setAdapter(adapter);
     }

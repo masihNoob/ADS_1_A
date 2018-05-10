@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.malang.exo.exotrip.CustomVolleyRequest;
+import com.malang.exo.exotrip.R;
 import com.malang.exo.exotrip.SliderUtils;
 
 import java.util.List;
