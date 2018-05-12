@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -208,6 +209,9 @@ public class ViewDirection extends FragmentActivity implements OnMapReadyCallbac
             ArrayList points = null;
             PolylineOptions polylineOptions = null;
 
+            String distance = "";
+            String duration = "";
+
             for(int i = 0; i < lists.size();i++)
             {
                 points = new ArrayList();
@@ -218,6 +222,14 @@ public class ViewDirection extends FragmentActivity implements OnMapReadyCallbac
                 for (int j = 0; j < path.size(); j++)
                 {
                     HashMap<String, String> point = path.get(j);
+
+                    if(j==0){ // Get distance from the list
+                        distance = (String)point.get("distance");
+                        continue;
+                    }else if(j==1){ // Get duration from the list
+                        duration = (String)point.get("duration");
+                        continue;
+                    }
 
                     Double lat = Double.parseDouble(point.get("lat"));
                     Double lng = Double.parseDouble(point.get("lng"));
@@ -232,6 +244,7 @@ public class ViewDirection extends FragmentActivity implements OnMapReadyCallbac
                 polylineOptions.geodesic(true);
 
             }
+            Log.d("mapInformation", "Distance:"+distance + ", Duration:"+duration);
             polyline = mMap.addPolyline(polylineOptions);
             waitDialog.dismiss();
         }
