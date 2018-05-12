@@ -99,20 +99,23 @@ public class ViewDirection extends FragmentActivity implements OnMapReadyCallbac
                 super.onLocationResult(locationResult);
                 lastlocation = locationResult.getLastLocation();
 
-                if (currentMarker != null) {
-                    currentMarker.remove();
-                    mMap.clear();
-                }
-
-                LatLng latLng = new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude());
                 MarkerOptions markerOptions = new MarkerOptions()
-                        .position(latLng)
+                        .position(new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude()))
                         .title("your location")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                 currentMarker = mMap.addMarker(markerOptions);
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude())));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+
+                //marker for destination
+                LatLng destinationLatLng = new LatLng(Double.parseDouble(Common.currentResult.getGeometry().getLocation().getLat()),
+                        Double.parseDouble(Common.currentResult.getGeometry().getLocation().getLng()));
+                currentMarker = mMap.addMarker(new MarkerOptions()
+                        .position(destinationLatLng)
+                        .title(Common.currentResult.getName())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                drawPath(lastlocation, Common.currentResult.getGeometry().getLocation());
             }
         };
     }
@@ -143,7 +146,7 @@ public class ViewDirection extends FragmentActivity implements OnMapReadyCallbac
                 LatLng destinationLatLng = new LatLng(Double.parseDouble(Common.currentResult.getGeometry().getLocation().getLat()),
                         Double.parseDouble(Common.currentResult.getGeometry().getLocation().getLng()));
                 currentMarker = mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(lastlocation.getLatitude(), lastlocation.getLongitude()))
+                        .position(destinationLatLng)
                         .title(Common.currentResult.getName())
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 drawPath(lastlocation, Common.currentResult.getGeometry().getLocation());
