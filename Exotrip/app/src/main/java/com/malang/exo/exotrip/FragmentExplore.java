@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -29,8 +30,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -53,22 +57,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentExplore extends Fragment implements OnMapReadyCallback,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        LocationListener{
+public class FragmentExplore extends Fragment implements OnMapReadyCallback{
 
     private static final int MY_PERMISSION_CODE = 1000;
     View view;
     SupportMapFragment supportMapFragment;
 
     private static GoogleMap mMap;
-    private GoogleApiClient googleApiClient;
+
+    FusedLocationProviderClient fusedLocationProviderClient;
+    LocationCallback locationCallback;
+    private LocationRequest locationRequest;
 
     private double latitude, longitude;
     private Location lastlocation;
     private Marker marker;
-    private LocationRequest locationRequest;
 
     private EditText editText;
     private ImageView imageView;
@@ -101,6 +104,52 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
         iGoogleAPIService = Common.getGoogleAPIService();
         //request permission
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) checkLocationPermission();
+
+        buildLocationCallBack();
+        buildLocationRequest();
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+    }
+
+    @Override
+    public void onStop() {
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        super.onStop();
+    }
+
+    private void buildLocationRequest() {
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(1000);
+        locationRequest.setSmallestDisplacement(10f);
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+    }
+
+    private void buildLocationCallBack() {
+        locationCallback = new LocationCallback()
+        {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                lastlocation = locationResult.getLastLocation();
+
+                if(marker != null) {
+                    marker.remove();
+                    mMap.clear();
+                }
+                latitude = lastlocation.getLatitude();
+                longitude = lastlocation.getLongitude();
+
+                LatLng latLng = new LatLng(latitude, longitude);
+                MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("your location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+                marker = mMap.addMarker(markerOptions);
+                marker.showInfoWindow();
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+            }
+        };
     }
 
     private void initial(){
@@ -218,11 +267,14 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
             case MY_PERMISSION_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        if (googleApiClient == null) buildGoogleApiClient();
-                            mMap.setMyLocationEnabled(true);
+                        mMap.setMyLocationEnabled(true);
+                        buildLocationCallBack();
+                        buildLocationRequest();
+
+                        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+                        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
                     }
-                } else
-                    Toast.makeText(getActivity(), "permission denied", Toast.LENGTH_SHORT).show();
+                }
             }
             break;
         }
@@ -241,69 +293,23 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback,
         {
             if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             {
-                buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
                 initial();
             }
         }else {
-            buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                //when user select the marker, data will be stored into static variable
-                Common.currentResult = currentPalce.getResults()[Integer.parseInt(marker.getSnippet())];
-                //open new activity
-                startActivity(new Intent(getActivity(), ViewPlace.class));
+                if(marker.getSnippet() != null) {
+                    //when user select the marker, data will be stored into static variable
+                    Common.currentResult = currentPalce.getResults()[Integer.parseInt(marker.getSnippet())];
+                    //open new activity
+                    startActivity(new Intent(getActivity(), ViewPlace.class));
+                }
                 return true;
             }
         });
-    }
-
-    private synchronized void buildGoogleApiClient() {
-        googleApiClient = new GoogleApiClient.Builder(getActivity()).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
-        googleApiClient.connect();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        locationRequest = new LocationRequest();
-        locationRequest.setInterval(1000);
-        locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        googleApiClient.connect();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        lastlocation = location;
-        if(marker != null) {
-            marker.remove();
-            mMap.clear();
-        }
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-
-        LatLng latLng = new LatLng(latitude, longitude);
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("your location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-
-        marker = mMap.addMarker(markerOptions);
-        marker.showInfoWindow();
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
-        if(googleApiClient != null) LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
     }
 }

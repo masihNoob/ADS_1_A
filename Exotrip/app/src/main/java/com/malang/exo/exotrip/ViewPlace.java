@@ -1,10 +1,12 @@
 package com.malang.exo.exotrip;
 
+import android.content.Intent;
 import android.media.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ public class ViewPlace extends AppCompatActivity {
     ImageView photo;
     RatingBar ratingBar;
     TextView openingHours, placeAddress, placeName;
+    Button btnViewDirection;
 
 
     IGoogleAPIService iGoogleAPIService;
@@ -40,10 +43,19 @@ public class ViewPlace extends AppCompatActivity {
         placeAddress = (TextView)findViewById(R.id.placeAddr);
         placeName = (TextView)findViewById(R.id.placeName);
         openingHours = (TextView)findViewById(R.id.placeOpenHour);
+        btnViewDirection = (Button)findViewById(R.id.btnViewDirection);
 
         placeName.setText("");
         placeAddress.setText("");
         openingHours.setText("");
+
+        btnViewDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewPlace.this, ViewDirection.class);
+                startActivity(intent);
+            }
+        });
 
         if(Common.currentResult.getPhotos() != null && Common.currentResult.getPhotos().length > 0) {
             Picasso.with(this).load(getPhotoOfPlace(Common.currentResult.getPhotos()[0].getPhoto_reference(), 1000)).placeholder(R.drawable.ic_image_black_24dp).error(R.drawable.ic_error_black_24dp).into(photo);
