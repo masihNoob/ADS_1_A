@@ -17,6 +17,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -45,8 +47,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.malang.exo.exotrip.Adapter.NearbyListAdapter;
 import com.malang.exo.exotrip.Model.MyPlaces;
 import com.malang.exo.exotrip.Model.Results;
+import com.malang.exo.exotrip.Nearby.Item;
 import com.malang.exo.exotrip.Remote.IGoogleAPIService;
 
 import java.io.IOException;
@@ -79,11 +83,35 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback{
     IGoogleAPIService iGoogleAPIService;
     MyPlaces currentPalce;
 
+
+    //region ujicoba list nearby places
+    RecyclerView list;
+    RecyclerView.LayoutManager layoutManager;
+    List<Item> items = new ArrayList<>();
+    //endregion
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.explore_fragment, container, false);
         editText = (EditText) view.findViewById(R.id.searchBar);
         imageView = (ImageView) view.findViewById(R.id.ic_magnify);
+
+
+        //region ujicoba list nearby place
+        list = (RecyclerView)view.findViewById(R.id.recyclerV);
+        list.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        list.setLayoutManager(layoutManager);
+
+        setData();
+        //endregion
+
         return view;
+    }
+
+    private void setData() {
+
+        NearbyListAdapter adapter = new NearbyListAdapter(items);
+        list.setAdapter(adapter);
     }
 
     @Override
@@ -159,7 +187,7 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback{
             public void onClick(View view) {
                 if(editText.getText().toString().trim().isEmpty())
                 {
-                    Toast.makeText(getActivity(), "tolong maukan alamat atau kota", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "tolong masukkan alamat atau kota", Toast.LENGTH_SHORT).show();
                 }else{
                     mapSearch();
                 }
@@ -212,6 +240,10 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback{
                         markerOptions.position(latLng);
                         markerOptions.title(placeName);
                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+
+                        //ujicoba list nearby places
+                        Item item = new Item(placeName, googlePlaces.getGeometry().toString(),true);
+                        items.add(item);
 
                         //store market by index
                         markerOptions.snippet(String.valueOf(i));
