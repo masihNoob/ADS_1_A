@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
-    android:padding="16dp"
+    android:padding="10dp"
     android:background="@color/colorRow">
     <TextView
         android:layout_width="match_parent"
@@ -12,8 +12,8 @@
         android:id="@id/textExpand"
         android:layout_alignParentTop="true"
         android:text="this is item with without child"
-        android:padding="8dp"
+        android:padding="2dp"
         android:textColor="@android:color/white"
-        android:textSize="20sp"/>
+        android:textSize="12sp"/>
 
 </RelativeLayout>

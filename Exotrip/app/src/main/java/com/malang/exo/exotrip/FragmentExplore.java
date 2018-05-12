@@ -331,6 +331,18 @@ public class FragmentExplore extends Fragment implements OnMapReadyCallback{
         }else {
             mMap.setMyLocationEnabled(true);
         }
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    mapSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
