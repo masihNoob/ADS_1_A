@@ -151,7 +151,27 @@
 3.2.2.2	DFD Level 2
 
 3.2.3 	Spesifikasi Proses (P-SPEC)
+	Kode buble 					deskripsi
+	DFD-0-1		: proses ini menggambarkan sistem secara keseluruhan. Bubble 0 akan dideskripsikan pada DFD level selanjutnya supaya dapat memberikan 
+				gambaran secara lebih rinci dan spesifik
+	DFD-1-1		: proses ini terjadi ketika user memakai aplikasi dan membuka aplikasi
+	DFD-1-2		: user dalam searching pada aplikasi ketika masuk ke dalam aplikasi
+	DFD-1-3		: user akan melakukan perencanaan perjalanan dengan menginputkan kota asal dan tempat tujuan 
+	DFD-1-4		: hasil inputan dari user akan menghasilkan suautu prediksi waktu dan rute terbaik, prediksi akan ditampilkan
+	DFD-2-2.1	: proses ini terjadi jika user akan melakukan searching tempat wisata
+	DFD-2-2.2	: user dapat memilih kriteria tempat wisata yang diinginkan berdasarkan lokasi wisata
+	DFD-2-2.3	: setelah ditemukan user akan memilih tempat wisata
+	DFD-2-3.1	: proses ini terjadi jika user ingin merencanakan wisata, maka aplikasi akan menampilan form isian untuk prediksi
+	DFD-2-3.2	: setelah form ditampilkan, user mengisi form dengan benar untuk mengetahui hasil prediksinya
+	DFD-2-4.1	: setelah user melakukan isi form perencanaan, maka aplikasi akan menampilkan hasil prediksi
+	DFD-2-4-2	: pada hasil prediksi tersebut, user dapat memilih lokasi perjalanan dan wisata
+	DFD-2-4-3	: setelah user memilih lokasi dan wisata yang diyuju, aplikasi akan menampilkan detail perjalanan yang dipilih	
+
 3.2.4 	Data Store
+	Data store		deskripsi
+	Data user		berisikan identitas user yang telah terdaftar melalui akun gmail/facebook
+	Data wisata		berisikan info tempat wisata seperti, lokasi wisata dan rating wisata
+
 3.3	Kebutuhan data
 3.3.1	E-R Diagram
 
